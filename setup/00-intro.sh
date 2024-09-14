@@ -153,10 +153,14 @@ elif [[ "$HYPERSCALER" == "aws" ]]; then
     AWS_ACCOUNT_ID=$(gum input --placeholder "AWS Account ID" --value "$AWS_ACCOUNT_ID")
     echo "export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID" >> .env
 
+    AWS_REGION=$(gum input --placeholder "AWS Region" --value "$AWS_REGION")
+    echo "export AWS_REGION=$AWS_REGION" >> .env
+
     echo "[default]
 aws_access_key_id = $AWS_ACCESS_KEY_ID
 aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
 aws_session_token = $AWS_SESSION_TOKEN
+aws_region = $AWS_REGION
 " >aws-creds.conf
 
     kubectl --namespace crossplane-system \
