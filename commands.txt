@@ -1,0 +1,4 @@
+Rancher Desktop / Preferences / Virtual Machine / Memory from 4 to 8
+Rancher Desktop / Preferences / Virtual Machine / CPUs from 2 to 4
+
+Rancher Desktop / Preferences / Kubernetes / Options / Unchecked Enable Traefik
