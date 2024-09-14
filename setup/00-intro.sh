@@ -147,8 +147,8 @@ elif [[ "$HYPERSCALER" == "aws" ]]; then
     AWS_SECRET_ACCESS_KEY=$(gum input --placeholder "AWS Secret Access Key" --value "$AWS_SECRET_ACCESS_KEY" --password)
     echo "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
 
-    AWS_SECRET_ACCESS_KEY=$(gum input --placeholder "AWS Secret Access Key" --value "$AWS_SECRET_ACCESS_KEY" --password)
-    echo "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
+    AWS_SESSION_TOKEN=$(gum input --placeholder "AWS Session Token" --value "$AAWS_SESSION_TOKEN" --password)
+    echo "export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN" >> .env
 
     AWS_ACCOUNT_ID=$(gum input --placeholder "AWS Account ID" --value "$AWS_ACCOUNT_ID")
     echo "export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID" >> .env
@@ -156,6 +156,7 @@ elif [[ "$HYPERSCALER" == "aws" ]]; then
     echo "[default]
 aws_access_key_id = $AWS_ACCESS_KEY_ID
 aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
+aws_session_token = $AWS_SESSION_TOKEN
 " >aws-creds.conf
 
     kubectl --namespace crossplane-system \
