@@ -161,7 +161,6 @@ aws_access_key_id = $AWS_ACCESS_KEY_ID
 aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
 aws_session_token = $AWS_SESSION_TOKEN
 aws_region = $AWS_REGION
-
 " >aws-creds.conf
 
     kubectl --namespace crossplane-system \
