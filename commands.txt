@@ -7,3 +7,9 @@ solved the:
 # git push  
 remote: Permission to vitor-caetano/crossplane-tutorial.git denied to vitor-caetano-gilead.
 fatal: unable to access 'https://github.com/vitor-caetano/crossplane-tutorial.git/': The requested URL returned error: 403
+
+chmod +x setup/00-intro.sh
+
+./setup/00-intro.sh
+
+source .env
