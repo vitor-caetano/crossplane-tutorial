@@ -106,23 +106,26 @@ if [ "$HYPERSCALER" = "google" ]; then
 
 elif [ "$HYPERSCALER" = "aws" ]; then
 
-    AWS_ACCESS_KEY_ID=$(gum input \
-        --placeholder "AWS Access Key ID" \
-        --value "$AWS_ACCESS_KEY_ID")
+    AWS_ACCESS_KEY_ID=$(gum input --placeholder "AWS Access Key ID" --value "$AWS_ACCESS_KEY_ID")
     echo "export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> .env
     
-    AWS_SECRET_ACCESS_KEY=$(gum input \
-        --placeholder "AWS Secret Access Key" \
-        --value "$AWS_SECRET_ACCESS_KEY" --password)
+    AWS_SECRET_ACCESS_KEY=$(gum input --placeholder "AWS Secret Access Key" --value "$AWS_SECRET_ACCESS_KEY" --password)
     echo "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
 
-    AWS_ACCOUNT_ID=$(gum input --placeholder "AWS Account ID" \
-        --value "$AWS_ACCOUNT_ID")
+    AWS_SESSION_TOKEN=$(gum input --placeholder "AWS Session Token" --value "$AWS_SESSION_TOKEN" --char-limit 1000)
+    echo "export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN" >> .env
+
+    AWS_ACCOUNT_ID=$(gum input --placeholder "AWS Account ID" --value "$AWS_ACCOUNT_ID")
     echo "export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID" >> .env
+
+    AWS_REGION=$(gum input --placeholder "AWS Region" --value "$AWS_REGION")
+    echo "export AWS_REGION=$AWS_REGION" >> .env
 
     echo "[default]
 aws_access_key_id = $AWS_ACCESS_KEY_ID
 aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
+aws_session_token = $AWS_SESSION_TOKEN
+aws_region = $AWS_REGION
 " >aws-creds.conf
 
 else
