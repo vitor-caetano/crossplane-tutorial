@@ -119,3 +119,37 @@ open http://argocd.127.0.0.1.nip.io
 admin
 admin123
 
+kubectl --namespace a-team get clusterclaims,sqlclaims,appclaims
+
+kubectl get managed
+
+crossplane beta trace clusterclaim cluster-01 --namespace a-team
+
+crossplane beta trace sqlclaim silly-demo-db --namespace a-team
+
+crossplane beta trace appclaim silly-demo --namespace a-team
+
+crossplane beta trace sqlclaim silly-demo-db --namespace a-team
+
+crossplane beta trace clusterclaim cluster-01 --namespace a-team
+
+crossplane beta trace appclaim silly-demo --namespace a-team
+
+export KUBECONFIG=$PWD/kubeconfig.yaml
+
+aws eks update-kubeconfig --region us-east-1 \
+    --name cluster-01 --kubeconfig $KUBECONFIG
+
+kubectl get nodes
+
+kubectl --namespace production get all,ingresses
+
+######################
+# Destroy Everything #
+######################
+
+unset KUBECONFIG
+
+chmod +x destroy/00-intro.sh
+
+./destroy/00-intro.sh
