@@ -113,6 +113,9 @@ chmod +x setup/00-intro.sh
 
 ./setup/00-intro.sh
 
+get credential for cpe-cicd-dev account
+region us-east-1
+
 source .env
 
 open http://argocd.127.0.0.1.nip.io
