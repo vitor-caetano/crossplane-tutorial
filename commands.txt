@@ -113,7 +113,7 @@ chmod +x setup/00-intro.sh
 
 ./setup/00-intro.sh
 
-get credential for cpe-cicd-dev account
+get credential for sandbox-001 account
 region us-east-1
 
 source .env
