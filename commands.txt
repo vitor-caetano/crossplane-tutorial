@@ -1,0 +1,113 @@
+devbox version update
+✓ Downloading version 0.13.6... [DONE]
+✓ Verifying checksum... [DONE]
+✓ Unpacking binary... [DONE]
+
+Version:     0.13.6
+Platform:    darwin_arm64
+Commit:      0bc66cb8d862ddfc8a43171b6cdf0f7804b6e679
+Commit Time: 2024-10-29T16:45:00Z
+Go Version:  go1.23.0
+Launcher:    0.2.2
+Success: updated to Devbox version 0.13.6
+===
+https://discourse.nixos.org/t/macos-15-sequoia-update-clobbers-nixbld1-4-users/52223
+curl --proto '=https' --tlsv1.2 -sSf -L https://github.com/NixOS/nix/raw/master/scripts/sequoia-nixbld-user-migration.sh | bash -
+Attempting to migrate _nixbld users.
+
+Step 1: move existing _nixbld users out of the destination UID range.
+Password:
+   Temporarily moved _nixbld5 from uid 305 -> 31000
+   Temporarily moved _nixbld6 from uid 306 -> 31001
+   Temporarily moved _nixbld7 from uid 307 -> 31002
+   Temporarily moved _nixbld8 from uid 308 -> 31003
+   Temporarily moved _nixbld9 from uid 309 -> 31004
+   Temporarily moved _nixbld10 from uid 310 -> 31005
+   Temporarily moved _nixbld11 from uid 311 -> 31006
+   Temporarily moved _nixbld12 from uid 312 -> 31007
+   Temporarily moved _nixbld13 from uid 313 -> 31008
+   Temporarily moved _nixbld14 from uid 314 -> 31009
+   Temporarily moved _nixbld15 from uid 315 -> 31010
+   Temporarily moved _nixbld16 from uid 316 -> 31011
+   Temporarily moved _nixbld17 from uid 317 -> 31012
+   Temporarily moved _nixbld18 from uid 318 -> 31013
+   Temporarily moved _nixbld19 from uid 319 -> 31014
+   Temporarily moved _nixbld20 from uid 320 -> 31015
+   Temporarily moved _nixbld21 from uid 321 -> 31016
+   Temporarily moved _nixbld22 from uid 322 -> 31017
+   Temporarily moved _nixbld23 from uid 323 -> 31018
+   Temporarily moved _nixbld24 from uid 324 -> 31019
+   Temporarily moved _nixbld25 from uid 325 -> 31020
+   Temporarily moved _nixbld26 from uid 326 -> 31021
+   Temporarily moved _nixbld27 from uid 327 -> 31022
+   Temporarily moved _nixbld28 from uid 328 -> 31023
+   Temporarily moved _nixbld29 from uid 329 -> 31024
+   Temporarily moved _nixbld30 from uid 330 -> 31025
+   Temporarily moved _nixbld31 from uid 331 -> 31026
+   Temporarily moved _nixbld32 from uid 332 -> 31027
+
+Step 2: re-create missing early _nixbld# users.
+      _nixbld1 was missing; created with uid: 351
+      _nixbld2 was missing; created with uid: 352
+      _nixbld3 was missing; created with uid: 353
+      _nixbld4 was missing; created with uid: 354
+
+Step 3: relocate remaining _nixbld# UIDs to 354+
+      _nixbld5 migrated to uid: 355
+      _nixbld6 migrated to uid: 356
+      _nixbld7 migrated to uid: 357
+      _nixbld8 migrated to uid: 358
+      _nixbld9 migrated to uid: 359
+      _nixbld10 migrated to uid: 360
+      _nixbld11 migrated to uid: 361
+      _nixbld12 migrated to uid: 362
+      _nixbld13 migrated to uid: 363
+      _nixbld14 migrated to uid: 364
+      _nixbld15 migrated to uid: 365
+      _nixbld16 migrated to uid: 366
+      _nixbld17 migrated to uid: 367
+      _nixbld18 migrated to uid: 368
+      _nixbld19 migrated to uid: 369
+      _nixbld20 migrated to uid: 370
+      _nixbld21 migrated to uid: 371
+      _nixbld22 migrated to uid: 372
+      _nixbld23 migrated to uid: 373
+      _nixbld24 migrated to uid: 374
+      _nixbld25 migrated to uid: 375
+      _nixbld26 migrated to uid: 376
+      _nixbld27 migrated to uid: 377
+      _nixbld28 migrated to uid: 378
+      _nixbld29 migrated to uid: 379
+      _nixbld30 migrated to uid: 380
+      _nixbld31 migrated to uid: 381
+      _nixbld32 migrated to uid: 382
+Migrated 32 users. If you want to double-check, try:
+dscl . list /Users UniqueID | grep _nixbld | sort -n -k2
+===
+Rancher Desktop / Preferences / Virtual Machine / Memory from 4 to 8
+Rancher Desktop / Preferences / Virtual Machine / CPUs from 2 to 4
+Rancher Desktop / Preferences / Kubernetes / Options / Unchecked Enable Traefik
+
+git credential-osxkeychain erase
+solved the:
+# git push  
+remote: Permission to vitor-caetano/crossplane-tutorial.git denied to vitor-caetano-gilead.
+fatal: unable to access 'https://github.com/vitor-caetano/crossplane-tutorial.git/': The requested URL returned error: 403
+===
+https://gist.github.com/vfarcic/732bf76feb51489add89567433019460
+
+cd projects
+
+gh repo fork vfarcic/crossplane-tutorial --clone --remote
+
+cd crossplane-tutorial
+
+gh repo set-default
+
+devbox shell
+
+chmod +x setup/00-intro.sh
+
+./setup/00-intro.sh
+
+source .env
