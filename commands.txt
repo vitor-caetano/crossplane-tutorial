@@ -1,3 +1,6 @@
+gh auth status
+gh auth switch
+
 devbox version update
 ✓ Downloading version 0.13.6... [DONE]
 ✓ Verifying checksum... [DONE]
@@ -84,7 +87,7 @@ Step 3: relocate remaining _nixbld# UIDs to 354+
 Migrated 32 users. If you want to double-check, try:
 dscl . list /Users UniqueID | grep _nixbld | sort -n -k2
 ===
-Rancher Desktop / Preferences / Virtual Machine / Memory from 4 to 8
+Rancher Desktop / Preferences / Virtual Machine / Memory from 4 to 8 or 10
 Rancher Desktop / Preferences / Virtual Machine / CPUs from 2 to 4
 Rancher Desktop / Preferences / Kubernetes / Options / Unchecked Enable Traefik
 
@@ -111,3 +114,8 @@ chmod +x setup/00-intro.sh
 ./setup/00-intro.sh
 
 source .env
+
+open http://argocd.127.0.0.1.nip.io
+admin
+admin123
+

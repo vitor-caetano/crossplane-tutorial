@@ -42,23 +42,14 @@ rm -f .env
 # Control Plane Cluster #
 #########################
 
-# kind create cluster --config kind.yaml
+kind create cluster --config kind.yaml
 
-# kubectl apply \
-#     --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
-
-helm repo update
-
-helm upgrade --install ingress-nginx ingress-nginx \
-  --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx --create-namespace --wait
+kubectl apply \
+    --filename https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 
 ##############
 # Crossplane #
 ##############
-
-helm repo add crossplane-stable https://charts.crossplane.io/stable
-helm repo update
 
 helm upgrade --install crossplane crossplane \
     --repo https://charts.crossplane.io/stable \
@@ -153,20 +144,12 @@ elif [[ "$HYPERSCALER" == "aws" ]]; then
     AWS_SECRET_ACCESS_KEY=$(gum input --placeholder "AWS Secret Access Key" --value "$AWS_SECRET_ACCESS_KEY" --password)
     echo "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
 
-    AWS_SESSION_TOKEN=$(gum input --placeholder "AWS Session Token" --value "$AWS_SESSION_TOKEN" --char-limit 1000)
-    echo "export AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN" >> .env
-
     AWS_ACCOUNT_ID=$(gum input --placeholder "AWS Account ID" --value "$AWS_ACCOUNT_ID")
     echo "export AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID" >> .env
-
-    AWS_REGION=$(gum input --placeholder "AWS Region" --value "$AWS_REGION")
-    echo "export AWS_REGION=$AWS_REGION" >> .env
 
     echo "[default]
 aws_access_key_id = $AWS_ACCESS_KEY_ID
 aws_secret_access_key = $AWS_SECRET_ACCESS_KEY
-aws_session_token = $AWS_SESSION_TOKEN
-aws_region = $AWS_REGION
 " >aws-creds.conf
 
     kubectl --namespace crossplane-system \
